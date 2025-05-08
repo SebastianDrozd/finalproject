@@ -17,16 +17,33 @@ export default function GeoMap({ data }) {
       />
       {data && (
         <>
-          <GeoJSON
-            key={JSON.stringify(data)}
-            data={data}
-            style={() => geoJSONStyle}
-            onEachFeature={(feature, layer) => {
-              if (feature.properties?.name) {
-                layer.bindPopup(`<b>${feature.properties.name}</b>`);
-              }
-            }}
-          />
+         <GeoJSON
+  key={JSON.stringify(data)}
+  data={data}
+  style={() => ({
+    color: 'red',         // only applies to LineString/Polygon
+    weight: 2,
+    fillColor: 'orange',
+    fillOpacity: 0.5
+  })}
+  pointToLayer={(feature, latlng) => {
+    return L.circleMarker(latlng, {
+      radius: 8,
+      fillColor: '#0070f3',
+      color: '#fff',
+      weight: 2,
+      opacity: 1,
+      fillOpacity: 0.9
+    });
+  }}
+  onEachFeature={(feature, layer) => {
+    if (feature.properties?.name) {
+      const props = feature.properties;
+      layer.bindPopup(`<b>${props.name}</b><br/>Population: ${props.population?.toLocaleString()}`);
+    }
+  }}
+/>
+
           <FitBoundsGeoJSON data={data} />
         </>
       )}

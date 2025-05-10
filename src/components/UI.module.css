@@ -90,6 +90,15 @@
     border-radius: 6px;
     cursor: pointer;
   }
+  .buttonThird {
+    background-color: #e4952f;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
   
   .mapContainer {
     width: 100%;
@@ -131,5 +140,21 @@
   
   .recentButton:hover {
     background-color: #d4d4d4;
+  }
+  .manualInputSection {
+    width: 100%;
+    max-width: 900px;
+    background: #fff;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+  .sampleSection {
+    width: 100%;
+    max-width: 900px;
+    margin-top: 2rem;
+    text-align: left;
   }
   

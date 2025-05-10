@@ -150,8 +150,8 @@ export default function Home() {
   const addToRecent = (parsed, rawText) => {
     setRecentSearches((prev) => [
       { parsed, rawText },
-      ...prev.filter(r => r.rawText !== rawText) // avoid duplicates
-    ].slice(0, 5)); // limit to last 5
+      ...prev.filter(r => r.rawText !== rawText) 
+    ].slice(0, 5)); 
   };
 
   const handleUpload = (e) => {
@@ -199,7 +199,7 @@ export default function Home() {
       const coordPairs = manualCoords.split('|').map(coord => {
         const [lat, lng] = coord.trim().split(',').map(Number);
         if (isNaN(lat) || isNaN(lng)) throw new Error('Invalid coordinate format');
-        return [lng, lat]; // GeoJSON expects [lng, lat]
+        return [lng, lat];
       });
 
       let geometry;
@@ -211,7 +211,6 @@ export default function Home() {
         geometry = { type: 'LineString', coordinates: coordPairs };
       } else if (type === 'Polygon') {
         if (coordPairs.length < 3) throw new Error('Polygon needs at least 3 coordinates');
-        // Polygon coordinates must be wrapped in an array and closed (first point = last point)
         if (coordPairs[0].toString() !== coordPairs[coordPairs.length - 1].toString()) {
           coordPairs.push(coordPairs[0]);
         }
